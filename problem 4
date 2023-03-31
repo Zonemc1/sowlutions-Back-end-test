@@ -1,0 +1,21 @@
+#problem 4
+
+import itertools
+
+with open('p059_cipher.txt') as f:
+    encrypted_codes = list(map(int, f.read().split(',')))
+
+lowercase_range = range(ord('a'), ord('z')+1)
+
+for key in itertools.product(lowercase_range, repeat=3):
+    key = bytes(key)
+
+    decrypted_codes = [code ^ key[i % 3] for i, code in enumerate(encrypted_codes)]
+
+    decrypted_text = ''.join(chr(code) for code in decrypted_codes)
+    
+    if all(word in decrypted_text.split() for word in ['I','to','the', 'and','a']):
+            ascii_sum = sum(encrypted_codes)
+            print(f"Decrypted text: {decrypted_text}\n")
+            print(f"Sum of ASCII values: {ascii_sum}")
+
