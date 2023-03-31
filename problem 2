@@ -1,0 +1,24 @@
+#Problem 2
+
+array = [1, 2, 2, 3, 3, 3, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 5, 5, 5, 5]
+
+countArray = [0] * 6
+
+for ca in array:
+    countArray[ca] += 1
+
+count_dict = {}
+
+for sa in array:
+    if sa in count_dict:
+        count_dict[sa] += 1
+    else:
+        count_dict[sa] = 1
+
+sortedArray = []
+for sa, count in sorted(count_dict.items()):
+    sortedArray.extend([sa] * count)
+    
+    
+print("countArray:",countArray)
+print("sortedArray:",sortedArray)
